@@ -1,0 +1,442 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Livros",
+        "description": "Swagger do Microserviço de Livros",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/api/v1/livros": {
+            "get": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Retorna uma lista de livros",
+                "description": "Retorna um array de livros",
+                "operationId": "App\\Http\\Controllers\\LivrosController::index",
+                "responses": {
+                    "200": {
+                        "description": "Uma lista de livros disponíveis",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "nome": {
+                                                        "type": "string"
+                                                    },
+                                                    "categoria": {
+                                                        "type": "string"
+                                                    },
+                                                    "autor": {
+                                                        "type": "string"
+                                                    },
+                                                    "codigo_autor": {
+                                                        "type": "string"
+                                                    },
+                                                    "ano": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object",
+                                                "example": {
+                                                    "nome": "a3fb6",
+                                                    "categoria": "Jessica Smith",
+                                                    "autor": "Teste",
+                                                    "codigo_autor": "teste",
+                                                    "ano": 111
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Faltam informações"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Criar um novo livro",
+                "description": "Criar um novo livro",
+                "operationId": "App\\Http\\Controllers\\LivrosController::store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "categoria": {
+                                        "type": "string"
+                                    },
+                                    "autor": {
+                                        "type": "string"
+                                    },
+                                    "codigo_autor": {
+                                        "type": "string"
+                                    },
+                                    "ano": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nome": "a3fb6",
+                                    "categoria": "Jessica Smith",
+                                    "autor": "Teste",
+                                    "codigo_autor": "teste",
+                                    "ano": 111
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Nome do Livro"
+                                        },
+                                        "categoria": {
+                                            "type": "string"
+                                        },
+                                        "autor": {
+                                            "type": "string"
+                                        },
+                                        "codigo_autor": {
+                                            "type": "string"
+                                        },
+                                        "ano": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/v1/livros/{id}": {
+            "get": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Retorna um livro",
+                "description": "Retorna um objeto livros",
+                "operationId": "App\\Http\\Controllers\\LivrosController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna o livro selecionado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Nome do Livro"
+                                        },
+                                        "categoria": {
+                                            "type": "string"
+                                        },
+                                        "autor": {
+                                            "type": "string"
+                                        },
+                                        "codigo_autor": {
+                                            "type": "string"
+                                        },
+                                        "ano": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Faltam informações"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Atualizar um livro",
+                "description": "Atualizar um livro",
+                "operationId": "App\\Http\\Controllers\\LivrosController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "categoria": {
+                                        "type": "string"
+                                    },
+                                    "autor": {
+                                        "type": "string"
+                                    },
+                                    "codigo_autor": {
+                                        "type": "string"
+                                    },
+                                    "ano": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nome": "a3fb6",
+                                    "categoria": "Jessica Smith",
+                                    "autor": "Teste",
+                                    "codigo_autor": "teste",
+                                    "ano": 111
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Nome do Livro"
+                                        },
+                                        "categoria": {
+                                            "type": "string"
+                                        },
+                                        "autor": {
+                                            "type": "string"
+                                        },
+                                        "codigo_autor": {
+                                            "type": "string"
+                                        },
+                                        "ano": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Exclui um livro",
+                "description": "Exclui um livro",
+                "operationId": "App\\Http\\Controllers\\LivrosController::destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Livro excluído"
+                    },
+                    "422": {
+                        "description": "Faltam informações"
+                    }
+                }
+            }
+        },
+        "/api/v1/contato": {
+            "post": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Enviar e-mail",
+                "description": "Enviar e-mail",
+                "operationId": "App\\Http\\Controllers\\LivrosController::contact",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "telefone": {
+                                        "type": "string"
+                                    },
+                                    "mensagem": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "nome": "a3fb6",
+                                    "email": "teste@teste.com.br",
+                                    "telefone": "11-11111111",
+                                    "mensagem": "teste"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Missing Data"
+                    }
+                }
+            }
+        },
+        "/api/v1/livros/upload/{id}": {
+            "get": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Retorna uma capa de livro",
+                "description": "Retorna uma capa de livro",
+                "operationId": "App\\Http\\Controllers\\LivrosController::image",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Capa de livro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "string",
+                                            "example": "String com a imagem em formato base64"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Faltam informações"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "livros"
+                ],
+                "summary": "Upload de capa de um livro",
+                "description": "Upload de capa de um livro",
+                "operationId": "App\\Http\\Controllers\\LivrosController::upload2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do livro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Livro excluído"
+                    },
+                    "422": {
+                        "description": "Faltam informações"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Livros",
+            "description": "API Endpoints - Livros"
+        }
+    ]
+}
