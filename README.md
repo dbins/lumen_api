@@ -15,8 +15,9 @@ Recursos disponíveis
 
 ## INSTALAÇÃO
 
-git clone endereço
-composer install
+> git clone https://github.com/dbins/lumen_api.git
+
+> composer install
 
 
 ## CRIAR PROJETO
